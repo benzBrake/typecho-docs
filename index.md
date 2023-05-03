@@ -13,10 +13,13 @@ Typecho 是由两个单词 type 和 echo 组成的，在发音的时候也发这
 
 此文档由[Jrotty](http://blog.zezeshe.com)提供，允许各种修改与传播。
 
+目前你看到的版本[Ryan](https://doufu.ru)有修改
+
 **纠错/修正文档**
 
-文档部分存在问题可提供修改意见致邮箱bssf@qq.com，知道我QQ的你可以直接发QQ消息。
-或者github提交修改：https://github.com/jrotty/jrotty.github.io
+文档部分存在问题请发 github issues: https://github.com/benzBrake/typechodocs/issues
+
+如果是内容讨论，则发 github discussions: https://github.com/benzBrake/typechodocs/discussions
 
 **最近维护时间**
 
