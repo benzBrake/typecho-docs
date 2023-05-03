@@ -23,7 +23,7 @@
  * [设置父分类和子分类不同样式的方法](/templates/设置父分类和子分类不同样式的方法)
  * [常用模板函数](/templates/常用模板函数)
  * [常用统计](/templates/常用统计)
- * [模板设置数据备份与恢复](/templates/模板设置数据备份与恢复)
+ * [Typecho主题选项定制](/templates/Typecho主题选项定制)
  * [Typecho数据库常用API](/templates/Typecho数据库常用API)
 * [插件入门](/)
  * [插件基本结构](/plugins/插件基本结构)
