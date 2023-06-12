@@ -22,38 +22,50 @@
 - **@version**是模板的版本号
 - **@link**是作者的网站连接
 
-紧挨着注释下方的`$this->need('header.php')`，在结尾处也会看到`$this->need('sidebar.php')`和`$this->need('footer.php')`。这些语句用来调用模板的其它模块。header故名思议是页首，sidebar是侧栏，footer是页脚。(与php的include功能差不多，need是typecho程序内置的方法，内部还会存在一些判断什么的，建议在做主题是使用need方法而不是include)
+你会看到这个文件里有三个调用`$this->need()`方法的地方
+
+```php
+<?php
+    ...
+	$this->need('header.php');
+    ...
+    $this->need('sidebar.php');
+    ...
+    $this->need('footer.php');
+```
+
+这些语句用来调用模板的其它 PHP 文件，语法是`need(PHP文件相对路径)`，相对于主题的路径。这个方法实际调用的是`require`方法，意味着模块是可以重复调用的。
 
 ### 显示文章列表
 
 ```html
 <?php if ($this->have()): ?>
-<?php while($this->next()): ?>
-<a href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
-作者:<a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a>
-时间: <?php $this->date(); ?>
-分类: <?php $this->category(','); ?>
-<a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('评论', '1 条评论', '%d 条评论'); ?>
-标签：<?php $this->tags(','); ?>
-<?php $this->content('- 阅读剩余部分 -'); ?>
-<?php endwhile; ?>
+    <?php while($this->next()): ?>
+        <a href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
+        作者:<a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a>
+        时间: <?php $this->date(); ?>
+        分类: <?php $this->category(','); ?>
+        <a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('评论', '1 条评论', '%d 条评论'); ?>
+        标签：<?php $this->tags(','); ?>
+        <?php $this->content('- 阅读剩余部分 -'); ?>
+    <?php endwhile; ?>
 <?php else: ?>暂无文章<?php endif; ?>
 ```
 
-进入文章循环，输出文章，一句一句介绍
+实际上在文章数据在`$this`对象里是以数组存起来的，所以必须用循环语句遍历才可以输出所有文章。
 
 | 代码 | 解释 |
 |:--|:--|
-|`<?php if ($this->have()): ?>`| 判断是否有文章，没有的话输出提示 |
-| `<?php while($this->next()): ?>` | 开始循环输出文章，与`<?php endwhile; ?>`对应 |
-| `<?php $this->permalink() ?>` | 文章所在的连接 |
+|`<?php if ($this->have()): ?>`| 判断是否有文章 |
+| `<?php while($this->next()): ?>` | while循环语句，PHP语法，必须与`<?php endwhile; ?>`对应，$this->next()是判断有没有下篇文章，有返回`true`，并且让数据下标+1，没有返回`false` |
+| `<?php $this->permalink() ?>`当前 | 文章所在的连接 |
 | `<?php $this->title() ?>` | 文章标题 |
 | `<?php $this->author(); ?>` | 文章作者 |
 | `<?php $this->author->permalink(); ?>` | 文章作者地址 |
-| `<?php $this->date(); ?>` | 文章的发布日期，日期格式可在typecho后台**设置->阅读**中设置|
-| `<?php $this->category(','); ?>` | 文章所在分类 |
-| `<?php $this->tags(','); ?>` | 文章标签 |
-| `<?php $this->commentsNum('评论', '1 条评论', '%d 条评论'); ?>` | 文章评论数及连接 |
+| `<?php $this->date(); ?>` | 文章的发布日期，日期格式可在Typecho后台**设置->阅读**中设置，或者使用参数1强制指定日期格式`<?php $this->date('Y-m-d'); ?>` |
+| `<?php $this->category(','); ?>` | 文章所在分类，参数1是分隔符 |
+| `<?php $this->tags(','); ?>` | 文章标签，参数1是分隔符 |
+| `<?php $this->commentsNum('评论', '1 条评论', '%d 条评论'); ?>` | 文章评论数及连接，参数可以指定多个，不指定直接输出数字，指定三个主要是某些语言0，单数，复数的后缀不一样，有的可能甚至更复杂 |
 | `<?php $this->content('- 阅读剩余部分 -'); ?>` | 文章内容，其中的“- 阅读剩余部分 -”是显示摘要时隐藏部分的邀请链接，也可使用`<?php $this->excerpt(140, '...'); ?>`来进行自动截取文字内容，“140”是截取字符数量 |
 
 ### 文章分页
@@ -71,7 +83,7 @@
 
 ### 其他说明
 
-archive.php代码同index.php，区别就是index.php是显示首页的，而archive.php是显示某分类下的文章列表、搜索结果的。如果模板文件中不存在archive.php，程序就会自动用index.php代替archive.php。
+`archive.php`代码码类似`index.php`，区别就是`index.php`是显示首页的，而`archive.php`是用于显示归档页面（分类，标签，搜索，作者），如果主题中没有没有`archive.php`则会自动调用`index.php`作为归档页。
 
 
 ## header.php
@@ -82,7 +94,9 @@ archive.php代码同index.php，区别就是index.php是显示首页的，而arc
 ```php
 <meta charset="<?php $this->options->charset(); ?>">
 ```
-调用默认的编码，现在最经常用都是utf-8吧。所以我通常是直接写成utf-8，省去php处理时间。
+泽泽原话：~~调用默认的编码，现在最经常用都是utf-8吧。所以我通常是直接写成utf-8，省去php处理时间。~~
+
+我的建议是，没必要去掉，博客又不是什么大流量网站，这点性能损失又不算啥。
 
 #### 页面标题
 
@@ -94,7 +108,7 @@ archive.php代码同index.php，区别就是index.php是显示首页的，而arc
             'author'    =>  _t('%s 发布的文章')
         ), '', ' - '); ?><?php $this->options->title(); ?>
 ```
-`<?php $this->archiveTitle(); ?>`是当前页面的标题，`<?php $this->options->title(); ?>`是网站的标题。
+`<?php $this->archiveTitle(); ?>`是当前页面的标题，`<?php $this->options->title(); ?>`是网站的标题。`archiveTitle()`接收第一个参数用于格式化标题，格式是键值对（PHP数组就是键值对），键名表示归档页类型，值则是标题模板，Typecho会自动替换`%s`为归档关键字。
 
 ### 导入样式
 
@@ -106,31 +120,31 @@ archive.php代码同index.php，区别就是index.php是显示首页的，而arc
 ```php
 <?php $this->header(); ?>
 ```
-这是typecho的自有函数，会输出HTML头部信息；同时这个也是头部插件接口，有了它插件可以向网站头部插入css或者js代码。
+这是Typecho的自有函数，会输出HTML头部信息；同时这个也是头部插件接口，有了它插件可以向网站头部插入css或者js代码。
 
 ### 网站名称与logo
 ```html
 <?php if ($this->options->logoUrl): ?>
-<a id="logo" href="<?php $this->options->siteUrl(); ?>">
-<img src="<?php $this->options->logoUrl() ?>" alt="<?php $this->options->title() ?>" />
+    <a id="logo" href="<?php $this->options->siteUrl(); ?>">
+    <img src="<?php $this->options->logoUrl() ?>" alt="<?php $this->options->title() ?>" />
 </a>
 <?php else: ?>
-<a id="logo" href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title() ?></a>
-<p class="description"><?php $this->options->description() ?></p>
+    <a id="logo" href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title() ?></a>
+    <p class="description"><?php $this->options->description() ?></p>
 <?php endif; ?>
 ```
 第一句的if判断是判断模板是否通过模板设置设置了logo的地址，如果设置了就显示logo图片，否则就显示博客标题。
 `<?php $this->options->siteUrl(); ?>`是网站地址
 `<?php $this->options->title() ?>`是网站名字
 `<?php $this->options->description() ?>`是网站描述。
-logo部分的讲解将会在**functions.php**章节中详细讲解。
+Logo部分的讲解将会在**functions.php**章节中详细讲解。
 
 ### 站内搜索
 
-```html
+```php+HTML
 <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
-<input type="text" id="s" name="s" class="text" placeholder="<?php _e('输入关键字搜索'); ?>" />
-<button type="submit" class="submit"><?php _e('搜索'); ?></button>
+    <input type="text" id="s" name="s" class="text" placeholder="<?php _e('输入关键字搜索'); ?>" />
+    <button type="submit" class="submit"><?php _e('搜索'); ?></button>
 </form>
 ```
 当你的文章很多很多，这个搜索就必不可少。
@@ -138,10 +152,10 @@ logo部分的讲解将会在**functions.php**章节中详细讲解。
 ### 页面导航
 ```html
 <nav id="nav-menu" class="clearfix" role="navigation">
-<a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
-<?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-<?php while($pages->next()): ?>
-<a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a>
+    <a<?php if($this->is('index')): ?> class="current"<?php endif; ?> href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
+    <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
+    <?php while($pages->next()): ?>
+    <a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a>
 <?php endwhile; ?>
 </nav>
 ```
@@ -153,33 +167,33 @@ logo部分的讲解将会在**functions.php**章节中详细讲解。
 
 ### 最新文章列表
 
-```html
+```php+HTML
 <ul class="widget-list">
 <?php $this->widget('Widget_Contents_Post_Recent')
             ->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
 </ul>
 ```
-获取最新的10篇文章标题，得到的html是
+获取最新的N篇文章标题，得到的html是
 ```html
 <ul class="widget-list">
-<li><a href="http://example.com/2008/12/31/sample-post-one">文章1的标题</a></li>
-<li><a href="http://example.com/2008/12/31/sample-post-two">文章2的标题</a></li>
-    <!-- 省略n个重复 -->
-<li><a href="http://example.com/2008/12/31/sample-post-ten">文章10的标题</a></li>
+    <li><a href="http://example.com/2008/12/31/sample-post-one">文章1的标题</a></li>
+    <li><a href="http://example.com/2008/12/31/sample-post-two">文章2的标题</a></li>
+        <!-- 省略n个重复 -->
+    <li><a href="http://example.com/2008/12/31/sample-post-ten">文章N的标题</a></li>
 </ul>
 ```
-具体显示数量可在typecho后台**设置->阅读**中设置。
+N的值可以在后台 **设置→阅读→文章列表数目**  设置
 
 ### 最新回复列表
-```html
+```php+HTML
 <ul class="widget-list">
 <?php $this->widget('Widget_Comments_Recent')->to($comments); ?>
 <?php while($comments->next()): ?>
-<li><a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(35, '...'); ?></li>
+    <li><a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(35, '...'); ?></li>
 <?php endwhile; ?>
 </ul>
 ```
-获取最新的10个回复，得到的html是
+获取最新的N个回复，得到的html是
 ```html
 <ul class="widget-list">
     <li>回复人名字: <a href="http://example.com/2008/12/31/sample-post#comments-12">回复的内容...</a></li>
@@ -187,7 +201,9 @@ logo部分的讲解将会在**functions.php**章节中详细讲解。
     <!-- 省略n个重复 -->
 </ul>
 ```
-其中`<?php $comments->excerpt(35, '...'); ?>`，“35”代表要回复内容截取的字的个数，“…”代表省略的意思，你可以自行修改。具体显示数量可在typecho后台**设置->评论**中设置。
+其中`<?php $comments->excerpt(35, '...'); ?>`，“35”代表要回复内容截取的字的个数，“…”代表省略的意思，你可以自行修改。
+
+N的值可以在后台 **设置→评论→评论列表数目**  设置
 
 ### 文章分类列表
 ```php
