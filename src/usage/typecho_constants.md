@@ -53,3 +53,22 @@ define('__TYPECHO_GRAVATR_PREFIX__', 'https://cravatar.cn/avatar');
 | 3    | https://cdn.v2ex.com/gravatar/    |                                |
 | 4    | https://gravatar.loli.net/avatar/ |                                |
 | 5    | https://weavatar.com/avatar/      | 支持显示 QQ 头像，支持上传头像 |
+
+## \__TYPECHO_UPLOAD_DIR__
+
+定义附件上传路径。比如从 WordPress 转过来后想沿用原来的上传你路径。
+
+```php
+define('__TYPECHO_UPLOAD_DIR__', '/wp-content/uploads/');
+```
+
+## \__TYPECHO_UPLOAD_URL__
+
+如果你使用了外部的附件服务器或者CDN，可以使用该常量来定义附件网址前缀。
+
+```php
+define('__TYPECHO_UPLOAD_URL__', 'https://xxxxx.upyun.com');
+```
+
+
+
