@@ -43,6 +43,10 @@ export default defineConfig({
             text: "常见问题",
             link: "question",
           },
+          {
+            text: 'Typecho 常量',
+            link: 'typecho_constants'
+          }
         ],
       }],
       'theme-develop': [
@@ -115,7 +119,7 @@ export default defineConfig({
             }
           ]
         }, {
-          base: "/theme-extend/",
+          base: "/theme-develop/",
           text: "模板扩展开发",
           items: [
 
