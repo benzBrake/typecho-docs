@@ -1,8 +1,8 @@
-.VPButton.alt[href="/typecho-docs/donate.html"] {
+.VPButton.alt[href$="/donate.html"] {
     color: #fff;
     background-color: rgb(5, 193, 96, .8) !important;
 }
-.VPButton.alt[href="/typecho-docs/donate.html"]:hover {
+.VPButton.alt[href$="/donate.html"]:hover {
     color: #fff;
     background-color: rgb(5, 193, 96) !important;
 }
