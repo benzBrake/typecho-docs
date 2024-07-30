@@ -40,7 +40,7 @@
 ```
 
 ## 注意
-本页看到的`_t`和`_e`都是 Typecho 内置的函数，用于多语言输出文本。详见[文本输出和多语言](/i18n.md)
+本页看到的`_t`和`_e`都是 Typecho 内置的函数，用于多语言输出文本。详见[文本输出和多语言](i18n.md)
 ```php
 <?php
 $localized_text = _t($format, $arg1, $arg2, ..., $argN);

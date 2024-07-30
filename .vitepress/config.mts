@@ -30,13 +30,13 @@ export default defineConfig({
             collapsed: true,
             items: [
               {
-                text: "Docker",
-                link: "install/docker",
-              },
-              {
                 text: "手动",
                 link: "install/manual",
               },
+              {
+                text: "Docker",
+                link: "install/docker",
+              }
             ]
           },
           {
