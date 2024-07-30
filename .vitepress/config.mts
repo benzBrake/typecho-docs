@@ -3,7 +3,7 @@ import mdItCustomAttrs from "markdown-it-custom-attrs"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "/typecho-docs",
+  base: "/",
   title: "Typecho 文档",
   description: "一份 Typecho 非官方文档",
   srcDir: "src",
