@@ -122,7 +122,10 @@ export default defineConfig({
           base: "/theme-develop/",
           text: "模板扩展开发",
           items: [
-
+            {
+              text: '前台个人资料页',
+              link: 'template-extend/frontend-profile'
+            }
           ]
         }
       ]
