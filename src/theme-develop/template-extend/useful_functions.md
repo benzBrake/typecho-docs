@@ -298,7 +298,7 @@ function getRandomCover() {
 
 调用举例，在列表循环里或者`post.php`里调用
 
-```
+```php
 <div class="post-cover">
 <?php thumbs($this, 1, false, true); ?>
 </div>
