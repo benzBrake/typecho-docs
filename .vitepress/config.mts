@@ -131,6 +131,9 @@ export default defineConfig({
             }, {
               text: '常用统计',
               link: 'template-extend/stat_functions'
+            }, {
+              text: '强制显示 404 页面',
+              link: 'template-extend/show_notfound'
             }
           ]
         }
