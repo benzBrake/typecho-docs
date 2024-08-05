@@ -128,6 +128,9 @@ export default defineConfig({
             }, {
               text: '常用模板函数',
               link: 'template-extend/useful_functions'
+            }, {
+              text: '常用统计',
+              link: 'template-extend/stat_functions'
             }
           ]
         }
