@@ -57,7 +57,7 @@ function themeInit($archive) {
 /**
  * 增加浏览次数
  */
-function increase_Views($archive) {
+function increase_views($archive) {
     $cookie = trim(\Typecho\Cookie::get('__typecho_views') ?? "", " \t\n\r\0\x0B,");
     $viewedIds = !empty($cookie) ? explode(',', $cookie) : [];
     $cid = $archive->cid;
@@ -75,7 +75,7 @@ function increase_Views($archive) {
 /**
  * 获取浏览次数，调用方式 get_views($archive, "0 times", "1 time", "%d times")
  */
-function get_Views() {
+function get_views() {
     $args = func_get_args();
     if (count($args) === 0) {
         throw new \InvalidArgumentException(_t("Parameter#1 \$archive cannot be null"));
@@ -114,7 +114,7 @@ function themeInit($archive) {
 /**
  * 增加浏览次数
  */
-function increase_Views($archive) {
+function increase_views($archive) {
     $cookie = trim(\Typecho\Cookie::get('__typecho_views') ?? "", " \t\n\r\0\x0B,");
     $viewedIds = !empty($cookie) ? explode(',', $cookie) : [];
     $cid = $archive->cid;
@@ -133,7 +133,7 @@ function increase_Views($archive) {
 /**
  * 获取浏览次数，调用方式 get_views($archive, "0 times", "1 time", "%d times")
  */
-function get_Views() {
+function get_views() {
     $args = func_get_args();
     if (count($args) === 0) {
         throw new \InvalidArgumentException(_t("Parameter#1 \$archive cannot be null"));
