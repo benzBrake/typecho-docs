@@ -16,6 +16,7 @@ export default defineConfig({
       { text: "首页", link: "/" },
       { text: "使用文档", link: "/usage", activeMatch: "/usage.*" },
       { text: "主题开发", link: "/theme-develop/template-quickstart", activeMatch: "/theme-develop.*" },
+      { text: "插件开发", link: "/plugin-develop/plugin-quickstart", activeMatch: "/plugin-develop.*"},
       { text: "捐赠支持", link: "/donate", activeMatch: "/donate" }
     ],
 
@@ -136,6 +137,13 @@ export default defineConfig({
               link: 'template-extend/show_notfound'
             }
           ]
+        }
+      ],
+      'plugin-develop': [
+        {
+          base: "/plugin-develop/",
+          text: '插件快速入门',
+          link: 'plugin-quickstart'
         }
       ]
     },
