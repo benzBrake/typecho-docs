@@ -125,7 +125,7 @@ export default defineConfig({
           items: [
             {
               text: '前台个人资料页',
-              link: 'template-extend/frontend-profile'
+              link: 'template-extend/frontend_profile'
             }, {
               text: '常用模板函数',
               link: 'template-extend/useful_functions'
