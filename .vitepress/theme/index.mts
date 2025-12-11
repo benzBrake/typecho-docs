@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-04-17 17:36:11
  * @LastEditors: mulingyuer
  * @Description: 主题配置
- * @FilePath: \Typecho_Theme_JJ\.vitepress\theme\index.mts
+ * @FilePath: \typecho-docs\.vitepress\theme\index.mts
  * 怎么可能会有bug！！！
  */
 import DefaultTheme from "vitepress/theme";
