@@ -23,8 +23,8 @@ define('__TYPECHO_DEBUG__', true);
 后台路径字定义，用于修改程序后台地址，提高安全性。 **typecho**默认后台地址是**admin**，如果我们想改成**typecho-admin**，那么首先登陆服务器把**admin**文件夹名字改成**typecho-admin**。然后在`config.inc.php`修改一下对应行即可
 ```php
 ...
-define('__TYPECHO_ADMIN_DIR__', '/admin/'); // [!code error]
-define('__TYPECHO_ADMIN_DIR__', '/admin/typecho-admin'); // [!code warning]
+define('__TYPECHO_ADMIN_DIR__', '/admin/'); // [!code --]
+define('__TYPECHO_ADMIN_DIR__', '/admin/typecho-admin'); // [!code ++]
 ...
 ```
 
