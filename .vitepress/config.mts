@@ -46,7 +46,7 @@ export default defineConfig({
           },
           {
             text: 'Typecho 常量',
-            link: 'typecho_constants'
+            link: 'typecho-constants'
           }
         ],
       }],
@@ -83,40 +83,43 @@ export default defineConfig({
           items: [
             {
               text: '神奇的 is 语法',
-              link: 'template-basic/is_syntax'
+              link: 'template-basic/is-syntax'
             }, {
               text: '文本输出和多语言',
               link: 'template-basic/i18n'
             }, {
               text: '自定义标题 ',
-              link: 'template-basic/custom_title'
+              link: 'template-basic/custom-title'
             }, {
               text: '自定义头部',
-              link: 'template-basic/custom_header'
+              link: 'template-basic/custom-header'
             }, {
               text: '面包屑导航',
-              link: 'template-basic/breadcrumbs_nav'
+              link: 'template-basic/breadcrumbs-nav'
             }, {
               text: '自定义评论',
-              link: 'template-basic/custom_comments'
+              link: 'template-basic/custom-comments'
             }, {
               text: '分离文章的评论和引用通告',
-              link: 'template-basic/divide_comment_and_pingback'
+              link: 'template-basic/divide-comment-and-pingback'
             }, {
               text: '调用自定义字段',
-              link: 'template-basic/custom_fields'
+              link: 'template-basic/custom-fields'
             }, {
               text: '调用相关文章',
-              link: 'template-basic/related_posts'
+              link: 'template-basic/related-posts'
             }, {
               text: '调用分类文章',
-              link: 'template-basic/category_posts'
+              link: 'template-basic/category-posts'
             }, {
               text: '调用标签',
               link: 'template-basic/tags'
             }, {
               text: '自定义分页样式',
-              link: 'template-basic/custom_pagination'
+              link: 'template-basic/custom-pagination'
+            }, {
+              text: '自定义错误页面',
+              link: 'template-basic/custom-error-page'
             }
           ]
         }, {
@@ -125,19 +128,19 @@ export default defineConfig({
           items: [
             {
               text: '前台个人资料页',
-              link: 'template-extend/frontend_profile'
+              link: 'template-extend/frontend-profile'
             }, {
               text: '常用模板函数',
-              link: 'template-extend/useful_functions'
+              link: 'template-extend/useful-functions'
             }, {
               text: '常用统计',
-              link: 'template-extend/stat_functions'
+              link: 'template-extend/stat-functions'
             }, {
               text: '强制显示 404 页面',
-              link: 'template-extend/show_notfound'
+              link: 'template-extend/show-notfound'
             }, {
               text: '主题选项开发',
-              link: 'template-extend/theme_options'
+              link: 'template-extend/theme-options'
             }
           ]
         }

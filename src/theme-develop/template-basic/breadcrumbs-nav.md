@@ -14,7 +14,7 @@
 <u>首页</u> » 搜索关键词或其他信息
 :::
 
-实际上 title 中的内容可以直接移植到我们的面包屑中，在看下面的代码之前，也许你需要先温习[神奇的is语法](is_syntax.md)
+实际上 title 中的内容可以直接移植到我们的面包屑中，在看下面的代码之前，也许你需要先温习[神奇的is语法](is-syntax.md)
 ```php
 <div class="crumbs_patch">
     <a href="<?php $this->options->siteUrl(); ?>">Home</a> &raquo;</li>
