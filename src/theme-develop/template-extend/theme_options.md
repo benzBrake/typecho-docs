@@ -143,7 +143,7 @@ function themeConfig($form)
 }
 ```
 
-##　增加主题选项备份功能
+## 增加主题选项备份功能
 
 增加以下代码即可实现
 
@@ -151,6 +151,7 @@ function themeConfig($form)
 <?php
 function themeConfig($form) {
 	// ...
+    $db = \Typecho\Db::get();
     $notice = \Widget\Notice::alloc();
     $request = \Typecho\Request::getInstance();
     $response = \Typecho\Response::getInstance();
