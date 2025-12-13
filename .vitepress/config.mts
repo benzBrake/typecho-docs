@@ -7,6 +7,9 @@ export default defineConfig({
   title: "Typecho 文档",
   description: "一份 Typecho 非官方文档",
   srcDir: "src",
+  head: [
+    ["script", { src: "https://tongji.kfwddq.com/script.js", "data-website-id": "c8922f45-0f34-4a47-bcec-f3c6052fa34c" }],
+  ],
   themeConfig: {
     search: {
       provider: "local",
