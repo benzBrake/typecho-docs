@@ -6,3 +6,10 @@
     color: #fff;
     background-color: rgb(5, 193, 96) !important;
 }
+.VPLink[href="https://www.kfwddq.com"] {
+    font-weight: 600;
+    color: var(--vp-button-brand-bg) !important;
+}
+.VPLink[href="https://www.kfwddq.com"]:hover {
+    color: var(--vp-button-brand-hover-bg) !important;
+}
