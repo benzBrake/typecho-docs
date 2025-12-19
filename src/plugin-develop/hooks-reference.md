@@ -194,6 +194,26 @@ class Plugin extends PluginInterface {
 | `finishEdit`   | call   | `$comment` | 评论编辑完成后调用 |
 | `listComments` | filter | `$options` | 过滤评论列表选项   |
 
+##### $comment 参数说明
+这是一个数组(Array)
+| 字段名 | 说明 |
+|--------|------|
+| `coid` | 评论ID，评论的唯一标识符 |
+| `cid` | 内容ID，表示该评论所属的文章或页面ID |
+| `author` | 评论者名称 |
+| `mail` | 评论者邮箱（可能为NULL，表示未提供） |
+| `url` | 评论者网站URL（可能包含重定向链接） |
+| `ip` | 评论者IP地址 |
+| `authorId` | 评论者用户ID（0表示匿名用户） |
+| `ownerId` | 内容所有者ID（文章或页面的作者ID） |
+| `agent` | 用户代理信息（包含发布平台和版本信息） |
+| `text` | 评论内容 |
+| `type` | 评论类型（如"comment"表示普通评论） |
+| `status` | 评论状态（如"approved"表示已批准） |
+| `parent` | 父评论ID（0表示直接对文章的评论） |
+| `created` | 评论创建时间戳（Unix时间戳） |
+| `date` | 日期对象（Typecho_Date类型，包含与created相同的时间戳） |
+
 ### 用户系统 Hook
 
 
