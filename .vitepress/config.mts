@@ -9,6 +9,7 @@ export default defineConfig({
   srcDir: "src",
   head: [
     ["script", { src: "https://tongji.kfwddq.com/script.js", "data-website-id": "c8922f45-0f34-4a47-bcec-f3c6052fa34c" }],
+    ["link", { rel: "icon", href: "/favicon.ico" }],
   ],
   themeConfig: {
     search: {
